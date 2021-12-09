@@ -1,4 +1,10 @@
-/*
+/*This is the code for ODE solver using Explicit Euler Method.
+The ODE used in the following code is dy/dt= y*t^3 -1.5*y
+the initial value y(0)=1;
+Here, we compute the Explicit Euler Solution and the analytical solution
+*/
+
+
 /* Input for the values of time step (h) and end time (t_end) is taken from the user
 y_0 is initialized 
 using exp_euler () fn, result is calculated and stored in y_result vector
@@ -10,8 +16,6 @@ if the err criteria is true for more than half the results, then it is flaged as
 
 */
 
-
-*/
 
 
 
