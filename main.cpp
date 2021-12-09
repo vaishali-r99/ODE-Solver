@@ -1,13 +1,15 @@
 /*
-This is the main function that goes on to solve the ODE using Explicit Euler Scheme after accepting the following inputs:
-y0 = Initial value of the integrated ODE y(t) ; y(0) = y0
-t_end = End time of the Explicit Euler Scheme
-dt = Time step size of the Explicit Euler Scheme
+/* Input for the values of time step (h) and end time (t_end) is taken from the user
+y_0 is initialized 
+using exp_euler () fn, result is calculated and stored in y_result vector
+using analytical_soln () fn, analytical solution is obtained and stored in analytical_result vector
+err defined as the absolute value of difference between analytical solution and computed result
+here in test case at each timestep reading, err is computed and a counter cnt is used check if the err>0.1 [assumption]
+if the err criteria is true for more than half the results, then it is flaged as an inefficient solution and inputs should be changed.
 
 
-n = No. of time steps
-time = Array that stores the time values
-result = Array of values that is the solution to the ODE y(t)
+*/
+
 
 */
 
@@ -32,6 +34,30 @@ int main()
     
     std::vector<double> y_result;
     y_result=exp_euler(y_0,h,t,t_end);
+
+        double err;
+    int cnt=0;
+    double t_a=0.0;
+    double a_res;
+    std::vector<double> analytical_result;
+    while(t_a<=t_end)
+    {   
+        analytical_result.push_back(analytical_soln(y_0, t_a));
+        t_a+=h;
+    }
+     std::cout<<"\n Exp. Euler Soln. \t Analytical soln. : ";
+    for(auto i=0;i<y_result.size();i++)
+    {
+        std::cout<<"\n"<<y_result[i]<<"\t"<<analytical_result[i];
+        err= fabs(analytical_result[i]-y_result[i]);
+        if( err>0.1)
+         cnt++;
+
+    }
+    if(cnt>(y_result.size()/2))
+        std::cout<<"\n Test case failed! Method not suitable for the given problem"; 
+    else
+         std::cout<<"\n Test case passed! Method suitable for the given problem";;
 
 
 }
