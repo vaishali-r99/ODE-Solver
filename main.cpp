@@ -1,5 +1,21 @@
- #include<iostream>
- #include<vector>
+/*
+This is the main function that goes on to solve the ODE using Explicit Euler Scheme after accepting the following inputs:
+y0 = Initial value of the integrated ODE y(t) ; y(0) = y0
+t_end = End time of the Explicit Euler Scheme
+dt = Time step size of the Explicit Euler Scheme
+
+
+n = No. of time steps
+time = Array that stores the time values
+result = Array of values that is the solution to the ODE y(t)
+
+*/
+
+
+
+
+#include<iostream>
+#include<vector>
 #include "f1.h"
 #include "euler1d.h"
 
