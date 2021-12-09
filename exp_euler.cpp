@@ -1,3 +1,12 @@
+
+/* Here the function exp_euler() calculates the Explicit Euler solution of the ODE.
+    The input parameters are y_0( y(0) value), h (time step), t and t_end
+    here the formula y(n+1)=y(n)+h.f(y(n),t(n)) is implemented
+    f(y(n),t(n)) or f is calculated using the given ODE equation: f=dy/dt=y*t^3-1.5*y
+    t is incremented by h till t_end to find the values at each timestep reading.
+    The result is stored in a vector y_res and returned as output
+*/
+
 #include<iostream>
 #include<vector>
 #include<cmath>
