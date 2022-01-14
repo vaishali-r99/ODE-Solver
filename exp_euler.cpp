@@ -18,7 +18,7 @@ std::vector<double> exp_euler(double y_0, double h, double t, double t_end)
     
     double y=y_0;
     double f;
-    int size = t_end/h +1;
+    int size = static_cast<int>(t_end/h +1);
     double yn;
     for(auto i=1;i<size;i++)
     {   f = y*pow(t,3)-1.5*y;
