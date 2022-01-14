@@ -1,53 +1,56 @@
 # ODE solver
-We have created an ODE solver for a given ODE using Explicit Euler Method and time step and time can be varied. 
-For sprint 1, Following tasks were to be completed
+We have created an ODE solver for a given ODE using Explicit Euler Method and Implicit Euler Method.The user can select the method they wish to use. Time step and End time can be varied. 
+
+Following tasks were to be completed:
+For sprint 1-
+
 -The project contains a comprehensive README.md file explaining how to use it, including an example.
 -The user can give an ODE to solve, either at runtime (e.g. with std::function/lamda, if you know what this is already) or specify it directly in the code. Any additional parameters (e.g. the time step value) can be provided in any way.
 -The solver prints or returns an std::vector of the solution.
 -The project contains at least one unit test which compares one case with its analytic solution for correctness.
 
+For sprint 2-
+-The user can select different ode solvers / schemes at runtime.
+-Every solver should give correct solutions for provided examples. All these examples should be accompanied by unit tests.
+-The solvers should be using the same class interface.
+-The README.md file should explain how one could extend the code to include a new solver
+
 Work done in the code:
-Computed the analytical values as well as the explicit euler solution values and calculated the error as absolute difference of the two. 
-This error value is used to determine whether the method is efficient or not.
+Sprint 1: 
+-Computed the analytical values as well as the explicit euler solution values and calculated the error as absolute difference of the two. 
+-This error value is used to determine whether the method is efficient or not.
+
+Sprint 2:
+
+- Implicit Euler scheme is added
+- Two classes are used for the explicit and implicit schemes derived from an abstract class (scheme)
+- User can select the solving scheme at the run-time
+- The solvers use the same class interface (done using smart pointer)
+- Test cases used to check whether the method gives suitable results or not.
+- Writing the output to a file
 
 The ODE used in the following code is dy/dt= y*t^3 -1.5*y
 the initial value y(0)=1;
-Here, we compute the Explicit Euler Solution and the analytical solution
+Here, we compute the Explicit Euler Solution, Implicit Euler Solution and the Analytical solution
 
-Input from the user: timestep h value and end time t_end value 
-Output : euler and analytical solutions and the statement based on error determining whether test case passed or failed
+Input from the user: timestep h value, end time t_end value and choice of solver to be used
+Output : Explicit Euler or Implicit Euler solution and the statement based on error determining whether test case passed or failed
 
-Functions: 
+Description:
 
-double analytical_soln(double y_0, double t)
+Multiple Inheritance used
 
-Computing the analytical solution
-The analytical solution calculated manually using integration for the given ODE: y=y0*e^(0.25*t^4-1.5*t)
-The two input parameters for the function are y0 and t values and returns the y value
+Class scheme: an abstract class (Parent class)
+Class ExplicitEuler: child class 
+Class ImplicitEuler: child class
 
-
-std::vector<double> exp_euler(double y_0, double h, double t, double t_end)
-
-Here the function exp_euler() calculates the Explicit Euler solution of the ODE.
-The input parameters are y_0( y(0) value), h (time step), t and t_end
-here the formula y(n+1)=y(n)+h.f(y(n),t(n)) is implemented
-f(y(n),t(n)) or f is calculated using the given ODE equation: f=dy/dt=y*t^3-1.5*y
-t is incremented by h till t_end to find the values at each timestep reading.
-The result is stored in a vector y_res and returned as output
+Further if more solving schemes are to be added, define other child classes similar to the above two schemes.
 
 
-int main()
-
-Input for the values of time step (h) and end time (t_end) is taken from the user
-y_0 is initialized 
-using exp_euler () fn, result is calculated and stored in y_result vector
-using analytical_soln () fn, analytical solution is obtained and stored in analytical_result vector
-err defined as the absolute value of difference between analytical solution and computed result
-here in test case at each timestep reading, err is computed and a counter cnt is used check if the err>0.1 (assumption)
-if the err criteria is true for more than half the results, then it is flaged as an inefficient solution and inputs should be changed. 
 
 
-Example:
+
+Example:(sprint 1)
 <1>
  Please enter the time step: 0.05
 
