@@ -1,5 +1,10 @@
 # ODE solver
-We have created an ODE solver for a given ODE using Explicit Euler Method and Implicit Euler Method.The user can select the method they wish to use. Time step and End time can be varied. 
+to build the code: g++ main.cpp ImplicitEuler.cpp ExplicitEuler.cpp f.cpp newton.cpp scheme.cpp -o main
+We have created an ODE solver to solve different ODEs of the forms : 
+1. dy/dt = y*t^3 - 1.5*y*t^2
+2. dy/dt =polynomial (not completed)
+
+The user has the option to choose the ODE as well as the method by which the ODE solved: Explicit Euler Method and Implicit Euler Method. In addition, Time step and End time are also user-configurable. 
 
 Following tasks were to be completed:
 For sprint 1-
@@ -15,7 +20,26 @@ For sprint 2-
 -The solvers should be using the same class interface.
 -The README.md file should explain how one could extend the code to include a new solver
 
+For sprint 3 - 
+-Improve the performance/optimize the code at atleast three scenarios using techniques like loop transformations, STL containers and algorithms and vectorization and analyse the performance changes
+-Create a file: `performance.md` that presents our observations from the performance analysis
+-Submit the most optimized version of the code
+
+
+
 Work done in the code:
+
+Sprint 3:
+
+-Added another ODE function of the form dy/dt = y^2 : The user can choose to solve from two ODEs
+-Performance Analysis has been performed with `gprof`
+-Code has been optimized with three optimizations using techniques of loop unrolling, jam and restructuring of class members
+-A file containing the observations in performance improvement `performance.md` has been included
+-Further work on adding more customizable ODEs has been carried out (although not submitted due to errors)
+
+
+
+
 Sprint 1: 
 -Computed the analytical values as well as the explicit euler solution values and calculated the error as absolute difference of the two. 
 -This error value is used to determine whether the method is efficient or not.
@@ -28,6 +52,8 @@ Sprint 2:
 - The solvers use the same class interface (done using smart pointer)
 - Test cases used to check whether the method gives suitable results or not.
 - Writing the output to a file
+
+
 
 The ODE used in the following code is dy/dt= y*t^3 -1.5*y
 the initial value y(0)=1;
@@ -226,6 +252,10 @@ Analytical Solution     Implicit Scheme Solution
 0       0
 
  Test Case Failed. Implicit method is not suitable for this case.
+
+
+
+
 
 
 
